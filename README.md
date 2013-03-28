@@ -63,12 +63,12 @@ $ pagen blue my_website
 ## Types of page generation
 *note: as of now, you cannot generate a bootstrap site and a blog at the same time.
 
-#### Default static website (as seen above)
+### Default static website (as seen above)
 ```
 $ pagen gray my_gray_site
 ```
 
-#### Dynamic blog running on MongoDB (Must have MongoDB installed)
+### Dynamic blog running on MongoDB (Must have MongoDB installed)
 ```
 $ pagen blue pagen_blog --blog
 ```
@@ -77,7 +77,7 @@ or
 $ pagen blue pagen_blog -b
 ```
 
-##### Blog Usage 
+#### Blog Usage 
 To setup the blog you need to have MongoDB installed.
 
 Go to the endpoint '/admin' to login. You will then see a form with password and confirm password boxes. In order to change your password, see the app.js file and change the variable 'password' to whatever you'd like. File below (first fourteen lines)
@@ -98,7 +98,7 @@ admin = null;
 password = 'your_password' #where you want to change the password
 ```
 
-#### Twitter bootstap static website
+### Twitter bootstap static website
 ```
 $ pagen pink my_bootstrap --bootstrap
 ```

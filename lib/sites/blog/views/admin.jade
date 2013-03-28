@@ -1,0 +1,15 @@
+head
+	link(rel='stylesheet', href='/stylesheets/reset.css')
+
+body
+	#check(style='margin:30px;')
+		form(action='/admin', method='post')
+			h1(style='margin-bottom:5px') Admin Login
+			p #{error}
+			ul
+				li(style='list-style-type:none;margin-top:5px')
+					input(type='password', name='password', placeholder='Password', id='admin_check')
+				li(style='list-style-type:none;margin-top:10px')
+					input(type='password', name='passwordconfirm', placeholder='Confirm Password', id='admin_check')
+				li(style='list-style-type:none;margin-top:10px')
+					input(type='submit', value='Login', id='submitComment')

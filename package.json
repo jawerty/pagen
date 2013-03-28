@@ -1,0 +1,40 @@
+{
+  "name": "pagen",
+  "homepage": "http://github.com/jawerty/pagen",
+  "author": "Jared Wright (http://wrightdev.herokuapp.com/jawerty)",
+  "bin": {
+    "pagen": "./pagen.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jawerty/pagen.git"
+  },
+  "description": "A simple but sweet node.js site generator",
+  "keywords": [
+    "pagen",
+    "pagen.js",
+    "static",
+    "site",
+    "generator",
+    "page",
+    "node.js"
+  ],
+  "version": "0.0.1",
+  "preferGlobal": "true",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "./pagen",
+  "directories": {
+    "lib":"lib",
+    "test": "test"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "wrench": "1.4.4",
+    "replace": "0.2.4"
+  }
+}

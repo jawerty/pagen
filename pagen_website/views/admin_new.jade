@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	script(src="/javascripts/nicEdit.js", type="text/javascript")
+	script(type='text/javascript')
+		bkLib.onDomLoaded(nicEditors.allTextAreas);
+		
+	#formNew
+		h1 New Post
+		form(method='post')
+			input(type='text', name='title', placeholder='Title')
+			br
+			br
+			textarea(id='formNewTextarea', name='body', placeholder='Write your post here')
+			br
+			br
+			input(type="submit", value="Create")
+

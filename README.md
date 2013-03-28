@@ -1,5 +1,5 @@
 # pagen
-Pagen is a simple but sweet site generator for node.js. You can generate nice-looking websites, from static to a MongoDB-run blog, in an instant.
+Pagen is a simple but colorful site generator for node.js. You can generate nice-looking websites, from static to a MongoDB-run blog, in an instant.
 
 Current version: 0.0.5
 
@@ -9,11 +9,11 @@ Current version: 0.0.5
 * Server is run with the web-framework **Express.js**
 * Generate your website in a variety of colors
 * Utilizes the Twitter bootstrap
-* Can 'blogify' your website in an instant
+* Will 'blogify' your website in an instant
 * Simple heroku deployment
 * Simple nodejitsu deployment
 * Blogs are run on MongoDB and based off of the [Node2Blog](https://github.com/jawerty/Node2Blog) project
-* Much more
+* Much more...
 
 # Installation
 Install globally

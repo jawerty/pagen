@@ -1,19 +1,16 @@
-#!/bin/sh
-
-heroku login
+#!/bin/bash
 npm install
 touch Procfile && touch .gitignore && touch .npmignore
-
+###
 cat > .npmignore << EOF
 node_modules
 test
 EOF
-
+###
 zsh <<< '> Procfile <<< "web: node app.js"'
 
 #git stuff
 git init
-
 cat > .gitignore << EOF
 lib-cov
 *.seed
@@ -32,7 +29,9 @@ npm-debug.log
 node_modules
 test
 EOF
-
-
+###
 git add .
 
+heroku create 
+
+heroku addons:add mongohq:sandbox

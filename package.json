@@ -5,6 +5,9 @@
   "bin": {
     "pagen": "./pagen.js"
   },
+  "lib": {
+    "lib": "./lib"
+  },
   "repository": {
     "type": "git",
     "url": "http://github.com/jawerty/pagen.git"
@@ -19,7 +22,7 @@
     "page",
     "node.js"
   ],
-  "version": "0.0.1",
+  "version": "0.0.5",
   "preferGlobal": "true",
   "licenses": [
     {
@@ -35,6 +38,7 @@
   "license": "MIT",
   "dependencies": {
     "wrench": "1.4.4",
-    "replace": "0.2.4"
+    "replace": "0.2.4",
+    "chdir": "*"
   }
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 var fs = require('fs');
 var sys = require('sys');
-var terminal = require('child_process').spawn('bash');
+var chdir = require('chdir');
 var wrench = require('wrench')
 var replace = require('replace');
 var util = require('util');
@@ -16,13 +16,13 @@ var exec = require('child_process').exec,
 var help = '\npagen is a simple but sweet site generator for node.js. \
 \n\nUsage: \n\tpagen <color> <directory> [options]\nOptions:\n\t-h, --help\tHelp screen\n\t-v, --version\tCurrent version\n\t-b, \
 --blog\tGenerate a blog-based, mongodb website\n\t-k, --heroku\tGenerate a website with heroku setup\n\t-n, --nodejitsu\tGenerates a website with nodejitsu setup\n  \
-\t-boot, --bootstrap\tAdds twitter bootstrap capabilities\n\t-HQ, --heroku-mongoHQ\tGenerates a website with a heroku setuo along with free-mongoHQ sandbox';
-var version = 'v0.0.1';
+\t-t, --bootstrap\tGenerates a website with twitter bootstrap capabilities\n';
+var version = 'v0.0.5';
 
-allowed_options = [ '-n', '--nodejitsu', '-k', '--heroku', '-b', '--blog', '-boot', '--bootstrap', '-HQ', '--heroku-mongoHQ']
-allowed_colors = ['red', 'green', 'blue']
+allowed_options = [ '-n', '--nodejitsu', '-k', '--heroku', '-b', '--blog', '-t', '--bootstrap'];
+allowed_colors = ['red', 'green', 'blue', 'lightblue', 'yellow', 'pink', 'magenta', 'brown', 'gray'];
 
-if(inArray('node', process.argv)){
+if(process.argv[0] == 'node'){
 	argv = process.argv.slice(2)
 }else{
 	argv = process.argv
@@ -75,8 +75,20 @@ site_generate = function(directory, type, color){
 	}
 
 	copy = function(small_type, type){
-		
-		wrench.copyDirSyncRecursive('./lib/sites/'+small_type, directory);
+		if (process.platform == 'darwin') cmd = 'sh '
+		else cmd = ''
+
+		start = function(shell, message){
+			fs.createReadStream('/usr/local/lib/node_modules/pagen/lib/shell_scripts'+shell).pipe(fs.createWriteStream(directory+shell));
+			function puts(error, stdout, stderr) { 
+				console.log(message)
+			}
+			chdir(directory, function () {
+				child = exec(cmd+'.'+shell, puts)
+			});
+		}
+
+		wrench.copyDirSyncRecursive('/usr/local/lib/node_modules/pagen/lib/sites/'+small_type, directory);
 
 		if (color == 'red') {
 			replace_text('#333333', '#FF3842', directory)
@@ -87,23 +99,32 @@ site_generate = function(directory, type, color){
 		}else if (color == 'blue') {
 			replace_text('#333333', '#1c6fff', directory)
 			replace_text('#666666', '#689fff', directory)
-		} 	
+		}else if (color == 'pink') {
+			replace_text('#333333', '#ff6363', directory)
+			replace_text('#666666', '#ffa0a0', directory)			
+		}else if (color == 'lightblue') {
+			replace_text('#333333', '#5e99ff', directory)
+			replace_text('#666666', '#aac9ff', directory)
+		}else if (color == 'magenta') {
+			replace_text('#333333', '#FF26FF', directory)
+			replace_text('#666666', '#FF68FF', directory)
+		}else if (color == 'yellow') {
+			replace_text('#333333', '#F7F700', directory)
+			replace_text('#666666', '#EDEDA6', directory)
+		}else if (color == 'brown') {
+			replace_text('#333333', '#845C21', directory)
+			replace_text('#666666', '#826844', directory)
+		}else if (color == 'gray') {
+			replace_text('#333333', '#7F7F7F', directory)
+			replace_text('#666666', '#B5B5B5', directory)
+		}
 
-		if (type.heroku == true){
-			file = './lib/shell_scripts/cd.sh';
-			if (process.platform == 'darwin') cmd = 'sh '
-			else cmd = ''
-			fs.createReadStream('./lib/shell_scripts/heroku_start.sh').pipe(fs.createWriteStream(directory+'/heroku_start.sh'));
-			replace_text('<directory>', directory, './lib/shell_scripts')
-			replace_text('<run>', cmd+'./heroku_start.sh', './lib/shell_scripts')
-			
-			function puts(error, stdout, stderr) { 
-				sys.puts(stdout) 
-				replace_text(directory, '<directory>', './lib/shell_scripts')
-				replace_text(cmd+'./heroku_start.sh', '<run>', './lib/shell_scripts')
-			}
-			exec('cd ./lib/shell_scripts', puts)
-
+		if (type.heroku == true && type.nodejitsu == true){
+			exit('Sorry, your can\'t deploy with both heroku and nodejitsu');
+		} else if (type.heroku == true){
+			start('/heroku_start.sh', green_start+'Pagen website created. use "cd '+directory+'" and "heroku create" to finalize your heroku deployment.'+end)
+		} else if (type.nodejitsu == true){
+			start('/nodejitsu_start.sh', green_start+'Pagen website created. use "cd '+directory+'" and "jitsu create" to finalize your nodejitsu deployment.'+end)
 		}
 	}
 	
@@ -129,7 +150,7 @@ site_generate = function(directory, type, color){
 }
 
 color = argv[0] || undefined;
-directory = argv[1] || undefined;
+directory = argv[1] || 'pagen_website';
 if(inArray(directory, allowed_colors) || inArray(directory, allowed_options)) directory = 'pagen_website';
 
 main = function(color, directory){
@@ -143,7 +164,7 @@ main = function(color, directory){
 	if(inArray('-v', argv) || inArray('--version', argv)){
 		exit(version);
 	}
-	if(argCheck("-boot") || argCheck("--bootstrap")){
+	if(argCheck("-t") || argCheck("--bootstrap")){
 		boot = true
 	}
 	if(argCheck("-b") || argCheck("--blog")){
@@ -154,9 +175,6 @@ main = function(color, directory){
 	}
 	if(argCheck("-k") || argCheck("--heroku")){
 		heroku = true
-	}
-	if(argCheck("-HQ") || argCheck("--heroku-mongoHQ")){
-		HQ = true
 	}
 
 	type = {'boot':boot, 'blog':blog, 'nodejitsu':nodejitsu, 'heroku':heroku, 'HQ':HQ}

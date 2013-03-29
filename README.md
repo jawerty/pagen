@@ -10,8 +10,7 @@ Current version: 0.0.6
 * Generate your website in a variety of colors
 * Utilizes the Twitter bootstrap
 * Will 'blogify' your website in an instant
-* Simple heroku deployment
-* Simple nodejitsu deployment
+* Instant and simplistic heroku/nodejitsu deployment
 * Blogs are run on MongoDB and based off of the [Node2Blog](https://github.com/jawerty/Node2Blog) project
 * Much more...
 

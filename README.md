@@ -140,7 +140,7 @@ $ jitsu create
 ```
 
 # What the static (green) website looks like
-![Image cannot be loaded](http://i.imgur.com/uDueYdT.png)
+![Image cannot be loaded](http://i.imgur.com/hmOeCG3.png)
 
 # Contact
 If you would like to contact me for further information on the project, see the info below.

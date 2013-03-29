@@ -42,6 +42,7 @@ list of colors
 * brown
 * magenta
 * yellow
+* Alternatively, you can choose whatever color scheme you want (as seen below)
 
 Creating a basic barbones node.js website (default black color)
 ```

@@ -139,7 +139,7 @@ $ cd jitsu_site
 $ jitsu create
 ```
 
-# What the static (green) website looks like
+# What the static (blue) website looks like
 ![Image cannot be loaded](http://i.imgur.com/hmOeCG3.png)
 
 # Contact

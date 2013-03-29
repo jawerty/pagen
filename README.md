@@ -31,7 +31,7 @@ i.e.
 $ pagen red website_folder
 ```
 
-list of colors
+## List of built-in colors
 * default (black)
 * green 
 * blue

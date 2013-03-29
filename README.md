@@ -1,7 +1,7 @@
 # pagen
 Pagen is a simple but colorful site generator for node.js. You can generate nice-looking websites, from static to a MongoDB-run blog, in an instant.
 
-Current version: 0.0.5
+Current version: 0.0.6
 
 # Features
 * Easy to use
@@ -58,6 +58,18 @@ $ pagen green
 Choosing your directory
 ```
 $ pagen blue my_website
+```
+
+Choose your own color scheme
+*note: the 1st color is the primary color while the 2nd is the secondary color.
+* simple colors
+```
+$ pagen 'blue_black' my_site
+```
+
+* color hex example
+```
+$ pagen '#545454_#ff892' my_website     
 ```
 
 ## Types of page generation

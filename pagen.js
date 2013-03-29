@@ -17,7 +17,7 @@ var help = '\npagen is a simple but sweet site generator for node.js. \
 \n\nUsage: \n\tpagen <color> <directory> [options]\nOptions:\n\t-h, --help\tHelp screen\n\t-v, --version\tCurrent version\n\t-b, \
 --blog\tGenerate a blog-based, mongodb website\n\t-k, --heroku\tGenerate a website with heroku setup\n\t-n, --nodejitsu\tGenerates a website with nodejitsu setup\n  \
 \t-t, --bootstrap\tGenerates a website with twitter bootstrap capabilities\n';
-var version = 'v0.0.5';
+var version = 'v0.0.6';
 
 allowed_options = [ '-n', '--nodejitsu', '-k', '--heroku', '-b', '--blog', '-t', '--bootstrap'];
 allowed_colors = ['red', 'green', 'blue', 'lightblue', 'yellow', 'pink', 'magenta', 'brown', 'gray'];
@@ -117,6 +117,9 @@ site_generate = function(directory, type, color){
 		}else if (color == 'gray') {
 			replace_text('#333333', '#7F7F7F', directory)
 			replace_text('#666666', '#B5B5B5', directory)
+		}else if (Object.prototype.toString.call( color ) === '[object Array]') {
+			replace_text('#333333', color[0], directory)
+			replace_text('#666666', color[1], directory)
 		}
 
 		if (type.heroku == true && type.nodejitsu == true){
@@ -150,6 +153,9 @@ site_generate = function(directory, type, color){
 }
 
 color = argv[0] || undefined;
+if (typeof color !== 'undefined' && color.indexOf('_')){
+	color = color.split('_')
+}
 directory = argv[1] || 'pagen_website';
 if(inArray(directory, allowed_colors) || inArray(directory, allowed_options)) directory = 'pagen_website';
 

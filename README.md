@@ -30,7 +30,7 @@ i.e.
 $ pagen red website_folder
 ```
 
-## List of built-in colors
+## List of built in colors
 * default (black)
 * green 
 * blue
@@ -43,14 +43,14 @@ $ pagen red website_folder
 * yellow
 * Alternatively, you can choose whatever color scheme you want (as seen below)
 
-Creating a basic barbones node.js website (default black color)
+Creating a basic barbones node.js/express website (default black color)
 ```
 $ pagen    #generates website
 $ cd pagen_website  
 $ node app	   #runs server
 ```
 
-Generate a website with some color (as seen above)
+Generate a website with a built in color scheme (as seen above)
 ```
 $ pagen green
 ```

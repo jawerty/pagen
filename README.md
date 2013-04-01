@@ -30,7 +30,7 @@ i.e.
 $ pagen red website_folder
 ```
 
-## List of built in colors
+### List of built in colors
 * default (black)
 * green 
 * blue

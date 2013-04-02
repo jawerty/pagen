@@ -140,7 +140,7 @@ With either the heroku toolbelt or jitsu already setup on your computer, deploym
 *note: The heroku deploy script will initialize git in the directory
 ```
 $ heroku login
-$ pagen red mysite --heroku #create the website
+$ pagen red mysite --heroku
 $ cd pagen
 $ heroku create
 ```
@@ -148,7 +148,7 @@ $ heroku create
 #### Nodejitsu deployment
 ```
 $ npm install jitsu -g 
-$ pagen green jitsu_site --nodejitsu #generate the website
+$ pagen green jitsu_site --nodejitsu 
 $ cd jitsu_site
 $ jitsu create
 ```

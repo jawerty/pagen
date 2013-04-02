@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 var fs = require('fs');
 var sys = require('sys');
+var request = require('request');
 var chdir = require('chdir');
 var wrench = require('wrench')
 var replace = require('replace');
@@ -17,9 +18,9 @@ var help = '\npagen is a simple but colorful site generator for node.js. \
 \n\nUsage: \n\tpagen <color> <directory> [options]\nOptions:\n\t-h, --help\tHelp screen\n\t-v, --version\tCurrent version\n\t-b, \
 --blog\tGenerate a blog-based, mongodb website\n\t-k, --heroku\tGenerate a website with heroku setup\n\t-n, --nodejitsu\tGenerates a website with nodejitsu setup\n  \
 \t-t, --bootstrap\tGenerates a website with twitter bootstrap capabilities\n';
-var version = 'v0.0.6';
+var version = 'v0.0.7';
 
-allowed_options = [ '-n', '--nodejitsu', '-k', '--heroku', '-b', '--blog', '-t', '--bootstrap'];
+allowed_options = [ '-n', '--nodejitsu', '-k', '--heroku', '-b', '--blog', '-t', '--bootstrap', '-l', '--library'];
 allowed_colors = ['red', 'green', 'blue', 'lightblue', 'yellow', 'pink', 'magenta', 'brown', 'gray'];
 
 if(process.argv[0] == 'node'){
@@ -44,6 +45,10 @@ exit = function(message, error){
 	util.puts(message);
 	err = error || null;
 	process.exit(err);
+}
+strToJson = function(str) {
+  eval("var x = " + str + ";");
+  return JSON.stringify(x);
 }
 
 isEmpty = function(array){
@@ -129,6 +134,51 @@ site_generate = function(directory, type, color){
 		} else if (type.nodejitsu == true){
 			start('/nodejitsu_start.sh', green_start+'Pagen website created. use "cd '+directory+'" and "jitsu create" to finalize your nodejitsu deployment.'+end)
 		}
+
+		if (type.library == true) {
+			request("http://cdnjs.com/packages.json", function(error, response, body) { 
+				if(error != null) exit(response + ': request could not be made. Try again.')
+				var urls = "";
+				url_format = 'http://cdnjs.cloudflare.com/ajax/libs/%s/%s/%s'
+				
+				packages = JSON.parse(body).packages
+				
+				/*d = [];
+				
+				for (i=0;i<type.library_data.length;i++){
+					key1 = type.library_data[i];
+					d.push({
+					    key: type.library_data[i],
+					    value: false
+					});
+				}
+				if(packages[i].name == d[i].key) d[i].value = true;*/
+				for (i=0;i<packages.length;i++){
+					if (inArray(packages[i].name, type.library_data)){
+						
+						name = packages[i].name;
+						version = packages[i].version;
+						filename = packages[i].filename;
+						url = util.format(url_format, name, version, filename);
+						js_reg =  /\.(js|min.js)$/i;
+						css_reg =  /\.(css)$/i;
+
+						if(filename.match(js_reg)){
+							element = "  script(src='"+url+"')";
+						}else if(filename.match(css_reg)){
+							element = "  link(href='"+url+"',rel='stylesheet')";
+						}else{
+							exit('Libraries must be css or javascript.')
+						}
+						urls = urls + '\n' +element;
+					}else{
+						
+						//console.log(type.library_data[i] + ' is not a library submitted to cdnjs. Try again without the extension if necessary.');
+					}
+				}
+				replace_text("script#pagen_script", urls, directory); //replace the empty script tag with the generated urls
+			});
+		}
 	}
 	
 	if(type.boot == true){
@@ -153,16 +203,19 @@ site_generate = function(directory, type, color){
 }
 
 color = argv[0] || undefined;
-if (typeof color !== 'undefined' && color.indexOf('_')){
-	color = color.split('_')
-}
 directory = argv[1] || 'pagen_website';
-if(inArray(directory, allowed_colors) || inArray(directory, allowed_options)) directory = 'pagen_website';
+
+if(inArray(color, allowed_options)){
+	color = undefined;
+	directory = undefined;
+}
+if (typeof color !== 'undefined' && color.indexOf('_')) color = color.split('_');
+if (inArray(directory, allowed_colors) || inArray(directory, allowed_options) || typeof directory == 'undefined') directory = 'pagen_website';
 
 main = function(color, directory){
 //options setup//
 	
-	var boot, blog, nodejitsu, heroku, HQ;
+	var boot, blog, nodejitsu, heroku, library;
 
 	if(inArray('-h', argv) || inArray('--help', argv)){
 		exit(help);
@@ -182,8 +235,22 @@ main = function(color, directory){
 	if(argCheck("-k") || argCheck("--heroku")){
 		heroku = true
 	}
+	if(argCheck("-l") || argCheck("--library")){
+		library = true
+		if (inArray('-l',argv)) lib = '-l'
+		else if(inArray('--library', argv)) lib = '--library'
+		raw_data = argv[argv.indexOf(lib) + 1] || undefined
+		if (inArray(raw_data, allowed_options)) exit(help)
+		if (typeof raw_data != 'undefined' && raw_data.indexOf('_')){
+			data = raw_data.split('_')
+		}else{
+			data = undefined
+		}
+	}else{
+		data = undefined
+	}
 
-	type = {'boot':boot, 'blog':blog, 'nodejitsu':nodejitsu, 'heroku':heroku, 'HQ':HQ}
+	type = {'boot':boot, 'blog':blog, 'nodejitsu':nodejitsu, 'heroku':heroku, 'library':library, 'library_data':data}
 	
 	if(typeof color == 'undefined'){ //running with no arguments defaults to the generator below
 	  site_generate(directory, type)

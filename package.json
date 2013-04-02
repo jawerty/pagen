@@ -22,7 +22,7 @@
     "page",
     "node.js"
   ],
-  "version": "0.0.6",
+  "version": "0.0.7",
   "preferGlobal": "true",
   "licenses": [
     {
@@ -39,6 +39,7 @@
   "dependencies": {
     "wrench": "1.4.4",
     "replace": "0.2.4",
+    "request": "2.16.6",
     "chdir": "*"
   }
 }

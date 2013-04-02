@@ -1,7 +1,7 @@
 # pagen
 Pagen is a simple but colorful site generator for node.js. You can generate nice-looking websites, from static to a MongoDB-run blog, in an instant.
 
-Current version: 0.0.6
+Current version: 0.0.7
 
 # Features
 * Easy to use
@@ -12,6 +12,7 @@ Current version: 0.0.6
 * Will 'blogify' your website in an instant
 * Instant and simplistic heroku/nodejitsu deployment
 * Blogs are run on MongoDB and based off of the [Node2Blog](https://github.com/jawerty/Node2Blog) project
+* Generate websites with js/css libraries already built in (i.e. socket.io/angular.js/etc)
 * Much more...
 
 # Installation
@@ -50,18 +51,18 @@ $ cd pagen_website
 $ node app	   #runs server
 ```
 
-Generate a website with some color (as seen above)
+Generate a website with some color (colors are above)
 ```
-$ pagen green
+$ pagen blue
 ```
 
 Choosing your directory
 ```
-$ pagen blue my_website
+$ pagen green my_website
 ```
 
 Choose your own color scheme
-*note: the 1st color is the primary color while the 2nd is the secondary color.
+*note: The 1st color is the primary color while the 2nd is the secondary color.
 * simple colors
 ```
 $ pagen 'blue_black' my_site
@@ -70,6 +71,18 @@ $ pagen 'blue_black' my_site
 * color hex example
 ```
 $ pagen '#545454_#ff892' my_website     
+```
+
+Importing javascript and/or css libraries (from [cdnjs]<http://cdnjs.com>)
+*note: Multiple library imports must be separated by '_' underscores.
+```
+$ pagen red --library angular.js
+```
+^This will import a website with the angular.js cdn already in the head.
+
+Multiple libraries
+```
+$ pagen blue --library angular.js_jade_socket.io
 ```
 
 ## Types of page generation

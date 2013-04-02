@@ -77,11 +77,12 @@ $ pagen '#545454_#ff892' my_website
 Importing javascript and/or css libraries (from [cdnjs]<http://cdnjs.com>)
 *note: Multiple library imports must be separated by '_' underscores.
 ```
-$ pagen red --library angular.js
+$ pagen red --library angular.js 
 ```
-^This will import a website with the angular.js cdn already in the head.
+The command above will import a website with the angular.js cdn already in the head.
 
-Multiple libraries
+
+Importing multiple libraries
 ```
 $ pagen blue --library angular.js_jade_socket.io
 ```

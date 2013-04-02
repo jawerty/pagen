@@ -18,7 +18,7 @@ var help = '\npagen is a simple but colorful site generator for node.js. \
 \n\nUsage: \n\tpagen <color> <directory> [options]\nOptions:\n\t-h, --help\tHelp screen\n\t-v, --version\tCurrent version\n\t-b, \
 --blog\tGenerate a blog-based, mongodb website\n\t-k, --heroku\tGenerate a website with heroku setup\n\t-n, --nodejitsu\tGenerates a website with nodejitsu setup\n  \
 \t-t, --bootstrap\tGenerates a website with twitter bootstrap capabilities\n\t-l, --library <library>\tAdd js|css libraries to your application';
-var version = 'v0.0.9';
+var version = 'v0.1.0';
 
 allowed_options = [ '-n', '--nodejitsu', '-k', '--heroku', '-b', '--blog', '-t', '--bootstrap', '-l', '--library'];
 allowed_colors = ['red', 'green', 'blue', 'lightblue', 'yellow', 'pink', 'magenta', 'brown', 'gray'];
@@ -130,7 +130,7 @@ site_generate = function(directory, type, color){
 		if (type.heroku == true && type.nodejitsu == true){
 			exit('Sorry, your can\'t deploy with both heroku and nodejitsu');
 		} else if (type.heroku == true){
-			start('/heroku_start.sh', green_start+'Pagen website created. use "cd '+directory+'" and "heroku create" to finalize your heroku deployment.'+end)
+			start('/heroku_start.sh', green_start+'Pagen website created. use "cd '+directory+'" and "heroku create && git push heroku master" to finalize your heroku deployment.'+end)
 		} else if (type.nodejitsu == true){
 			start('/nodejitsu_start.sh', green_start+'Pagen website created. use "cd '+directory+'" and "jitsu create" to finalize your nodejitsu deployment.'+end)
 		}

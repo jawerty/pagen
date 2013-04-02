@@ -33,5 +33,3 @@ EOF
 git add .
 
 heroku create 
-
-heroku addons:add mongohq:sandbox

@@ -130,9 +130,9 @@ site_generate = function(directory, type, color){
 		if (type.heroku == true && type.nodejitsu == true){
 			exit('Sorry, your can\'t deploy with both heroku and nodejitsu');
 		} else if (type.heroku == true){
-			start('/heroku_start.sh', green_start+'Pagen website created. use "cd '+directory+'" and "heroku create && git push heroku master" to finalize your heroku deployment.'+end)
+			start('/heroku_start.sh', green_start+'Pagen website created. use "cd '+directory+'" and "heroku create" to finalize your heroku setup. (you must add/commit/push to the repository on your own)'+end)
 		} else if (type.nodejitsu == true){
-			start('/nodejitsu_start.sh', green_start+'Pagen website created. use "cd '+directory+'" and "jitsu create" to finalize your nodejitsu deployment.'+end)
+			start('/nodejitsu_start.sh', green_start+'Pagen website created. use "cd '+directory+'" and "jitsu create" to finalize your nodejitsu setup.'+end)
 		}
 
 		if (type.library == true) {

@@ -142,17 +142,7 @@ site_generate = function(directory, type, color){
 				url_format = 'http://cdnjs.cloudflare.com/ajax/libs/%s/%s/%s'
 				
 				packages = JSON.parse(body).packages
-				
-				/*d = [];
-				
-				for (i=0;i<type.library_data.length;i++){
-					key1 = type.library_data[i];
-					d.push({
-					    key: type.library_data[i],
-					    value: false
-					});
-				}
-				if(packages[i].name == d[i].key) d[i].value = true;*/
+
 				for (i=0;i<packages.length;i++){
 					if (inArray(packages[i].name, type.library_data)){
 						

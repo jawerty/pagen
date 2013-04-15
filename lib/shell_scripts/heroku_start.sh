@@ -32,4 +32,3 @@ EOF
 ###
 git add .
 
-heroku create 

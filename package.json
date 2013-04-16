@@ -1,6 +1,6 @@
 {
   "name": "pagen",
-  "homepage": "http://github.com/jawerty/pagen",
+  "homepage": "http://jawerty.github.io/pagen/",
   "author": "Jared Wright (http://wrightdev.herokuapp.com/jawerty)",
   "bin": {
     "pagen": "./pagen.js"

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>pagen.js by jawerty</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>pagen.js</h1>
+          <h2>pagen.js is a simple and customizable website generator for node.js.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/jawerty/pagen/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/jawerty/pagen/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/jawerty/pagen" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>pagen.js</h1>
+
+<p>pagen.js is a simple and customizable site generator for node.js. You can generate nice-looking websites, from static to a MongoDB-run blog, in an instant.</p>
+
+<p>Current version: 0.1.2</p>
+
+<h1>Features</h1>
+
+<ul>
+<li>Easy to use</li>
+<li>Simple to setup (NPM)</li>
+<li>Server is run with the web-framework <strong>Express.js</strong>
+</li>
+<li>Generate your website in a variety of colors</li>
+<li>Utilizes the Twitter bootstrap</li>
+<li>Will 'blogify' your website in an instant</li>
+<li>Instant and simplistic heroku/nodejitsu deployment</li>
+<li>Blogs are run on MongoDB and based off of the <a href="https://github.com/jawerty/Node2Blog">Node2Blog</a> project</li>
+<li>Generate websites with js/css libraries already built in (i.e. socket.io/angular.js/etc)</li>
+<li>Much more...</li>
+</ul><h1>Installation</h1>
+
+<p>Install globally</p>
+
+<pre><code>$ npm install pagen -g
+</code></pre>
+
+<h1>Getting Started</h1>
+
+<p>Example for pagen's basic usage</p>
+
+<p><code>pagen &lt;color&gt; &lt;directory&gt; [options]</code></p>
+
+<p>i.e.</p>
+
+<pre><code>$ pagen red website_folder
+</code></pre>
+
+<h5>List of built in colors</h5>
+
+<ul>
+<li>default (black)</li>
+<li>green </li>
+<li>blue</li>
+<li>red</li>
+<li>gray</li>
+<li>lightblue</li>
+<li>pink</li>
+<li>brown</li>
+<li>magenta</li>
+<li>yellow</li>
+<li>Alternatively, you can choose whatever color scheme you want (as seen below)</li>
+</ul><p>Creating a basic barbones node.js/express website (default black color)</p>
+
+<pre><code>$ pagen    #generates website
+$ cd pagen_website  
+$ node app     #runs server
+</code></pre>
+
+<p>Generate a website with a built in color scheme (as seen above)</p>
+
+<pre><code>$ pagen blue
+</code></pre>
+
+<p>Choosing your directory</p>
+
+<pre><code>$ pagen green my_website
+</code></pre>
+
+<p>Choose your own color scheme
+*note: The 1st color is the primary color while the 2nd is the secondary color.</p>
+
+<ul>
+<li>
+<p>simple colors</p>
+
+<pre><code>$ pagen 'blue_black' my_site
+</code></pre>
+</li>
+<li>
+<p>color hex example</p>
+
+<pre><code>$ pagen '#545454_#ff892' my_website     
+</code></pre>
+</li>
+</ul><p>Importing javascript and/or css libraries (from [cdnjs]<a href="http://cdnjs.com">http://cdnjs.com</a>)</p>
+
+<p>*note: Multiple library imports must be separated by '_' underscores.</p>
+
+<pre><code>$ pagen red --library angular.js 
+</code></pre>
+
+<p>The command above will import a website with the angular.js cdn already in the head.</p>
+
+<p>Importing multiple libraries</p>
+
+<pre><code>$ pagen blue --library angular.js_jade_socket.io
+</code></pre>
+
+<h2>Types of page generation</h2>
+
+<p>*note: as of now, you cannot generate a bootstrap site and a blog at the same time.</p>
+
+<h3>Default static website (as seen above)</h3>
+
+<pre><code>$ pagen gray my_gray_site
+</code></pre>
+
+<h3>Dynamic blog running on MongoDB (Must have MongoDB installed)</h3>
+
+<pre><code>$ pagen blue pagen_blog --blog
+</code></pre>
+
+<p>or</p>
+
+<pre><code>$ pagen blue pagen_blog -b
+</code></pre>
+
+<h4>Blog Usage</h4>
+
+<p>To setup the blog you need to have MongoDB installed.</p>
+
+<p>Go to the endpoint '/admin' to login. You will then see a form with password and confirm password boxes. In order to change your password, see the app.js file and change the variable 'password' to whatever you'd like. File below (first fourteen lines)</p>
+
+<pre><code>/**
+ * Module dependencies.
+ */
+
+var express = require('express')
+  , routes = require('./routes')
+  , http = require('http')
+  , path = require('path');
+
+var app = express();
+var store = new express.session.MemoryStore;
+
+admin = null;
+password = 'your_password' #where you want to change the password
+</code></pre>
+
+<h3>Twitter bootstap static website</h3>
+
+<pre><code>$ pagen pink my_bootstrap --bootstrap
+</code></pre>
+
+<p>or</p>
+
+<pre><code>$ pagen pink my_bootstrap -t
+</code></pre>
+
+<h2>Heroku and Nodejitsu setup</h2>
+
+<p>With either the heroku toolbelt or jitsu already setup on your computer, deployment is rather simple</p>
+
+<h4>Heroku deployment</h4>
+
+<p>*note: The heroku deploy script will initialize git in the directory</p>
+
+<pre><code>$ heroku login
+$ pagen red mysite --heroku
+$ cd pagen
+$ heroku create
+</code></pre>
+
+<h4>Nodejitsu deployment</h4>
+
+<pre><code>$ npm install jitsu -g 
+$ pagen green jitsu_site --nodejitsu 
+$ cd jitsu_site
+$ jitsu create
+</code></pre>
+
+<h1>What the static (blue) website looks like</h1>
+
+<p><img src="http://i.imgur.com/hmOeCG3.png" alt="Image cannot be loaded"></p>
+
+<h1>Contact</h1>
+
+<p>If you would like to contact me for further information on the project, see the info below.</p>
+
+<p>Email: <a href="mailto:jawerty210@gmail.com">jawerty210@gmail.com</a></p>
+
+<p>Github: jawerty</p>
+
+<p>Twitter: <a href="https://github.com/jawerty" class="user-mention">@jawerty</a></p>
+
+<p>Blog: <a href="http://wrightdev.herokuapp.com">http://wrightdev.herokuapp.com</a></p>
+
+<h1>License</h1>
+
+<p>See the file <a href="https://github.com/jawerty/pagen/blob/master/LICENSE">LICENSE</a> to view the MIT License</p>
+        </section>
+
+        <footer>
+          pagen.js is maintained by <a href="https://github.com/jawerty">jawerty</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+                  <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-38539483-Y");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+      </div>
+    </div>
+  </body>
+</html>

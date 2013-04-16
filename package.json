@@ -12,7 +12,7 @@
     "type": "git",
     "url": "http://github.com/jawerty/pagen.git"
   },
-  "description": "A simple but sweet node.js site generator",
+  "description": "A simple and customizable node.js site generator",
   "keywords": [
     "pagen",
     "pagen.js",
@@ -22,7 +22,7 @@
     "page",
     "node.js"
   ],
-  "version": "0.1.2",
+  "version": "0.1.3",
   "preferGlobal": "true",
   "licenses": [
     {

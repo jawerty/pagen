@@ -1,5 +1,5 @@
-# pagen
-Pagen is a simple but colorful site generator for node.js. You can generate nice-looking websites, from static to a MongoDB-run blog, in an instant.
+# pagen.js
+pagen.js is a simple and customizable site generator for node.js. You can generate nice-looking websites, from static to a MongoDB-run blog, in an instant.
 
 Current version: 0.1.1
 

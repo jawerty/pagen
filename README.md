@@ -8,7 +8,7 @@ Current version: 0.1.4
 # Features
 * Easy to use
 * Simple to setup (NPM)
-* Server is run with the web-framework **Express.js**
+* Generated website server is run with the web-framework **Express.js**
 * Generate your website in a variety of colors
 * Utilizes the Twitter bootstrap
 * Will 'blogify' your website in an instant

@@ -3,7 +3,7 @@ pagen.js is a simple and customizable site generator for node.js. You can genera
 
 homepage: http://jawerty.github.io/pagen/
 
-Current version: 0.1.4
+Current version: 0.1.7
 
 # Features
 * Easy to use
@@ -92,7 +92,7 @@ $ pagen blue --library angular.js_jade_socket.io
 ```
 
 ## Types of page generation
-*note: as of now, you cannot generate a bootstrap site and a blog at the same time.
+*note: As of now, you cannot generate a bootstrap site and a blog at the same time.
 
 ### Default static website (as seen above)
 ```
@@ -137,6 +137,13 @@ or
 ```
 $ pagen pink my_bootstrap -t
 ```
+
+### Skeleton Express app
+```
+$ pagen skeleton
+```
+*note: You cannot use the blog or bootstrap arguments with the skeleton app but the '--library' and deployment arguments are allowed.
+
 ## Heroku and Nodejitsu setup
 With either the heroku toolbelt or jitsu already setup on your computer, deployment is rather simple
 

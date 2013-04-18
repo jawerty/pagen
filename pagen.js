@@ -18,7 +18,7 @@ var help = '\npagen.js is a simple and customizable site generator for node.js. 
 \n\nUsage: \n\tpagen <color> <directory> [options]\nOptions:\n\t-h, --help\tHelp screen\n\t-v, --version\tCurrent version\n\t-b, \
 --blog\tGenerate a blog-based, mongodb website\n\t-k, --heroku\tGenerate a website with heroku setup\n\t-n, --nodejitsu\tGenerates a website with nodejitsu setup\n  \
 \t-t, --bootstrap\tGenerates a website with twitter bootstrap capabilities\n\t-l, --library <library>\tAdd js|css libraries to your application';
-var version = 'v0.1.4';
+var version = 'v0.1.7';
 
 allowed_options = [ '-n', '--nodejitsu', '-k', '--heroku', '-b', '--blog', '-t', '--bootstrap', '-l', '--library'];
 allowed_colors = ['red', 'green', 'blue', 'lightblue', 'yellow', 'pink', 'magenta', 'brown', 'gray'];
@@ -67,7 +67,7 @@ argCheck = function(arg){
 	}
 }
 
-site_generate = function(directory, type, color){
+site_generate = function(directory, type, color, skeleton){
 
 	replace_text = function(regex, replacement, directory){
 		replace({
@@ -80,7 +80,9 @@ site_generate = function(directory, type, color){
 	}
 
 	copy = function(small_type, type){
+
 		if (process.platform == 'darwin') cmd = 'sh '
+
 		else cmd = ''
 
 		if (fs.existsSync('/usr/local/lib/node_modules')) {
@@ -88,6 +90,7 @@ site_generate = function(directory, type, color){
 		}else{
 			dir = '/usr/lib/node_modules'
 		}
+
 		start = function(shell, message){
 			fs.createReadStream(dir+'/pagen/lib/shell_scripts'+shell).pipe(fs.createWriteStream(directory+shell));
 			function puts(error, stdout, stderr) { 
@@ -180,6 +183,8 @@ site_generate = function(directory, type, color){
 		small_type = 'bootstrap'
 	}else if(type.blog == true){
 		small_type = 'blog'
+	}else if(type.skeleton == true){
+		small_type = 'skeleton'
 	}else{
 		small_type = 'simple'
 	}
@@ -198,14 +203,22 @@ site_generate = function(directory, type, color){
 }
 
 color = argv[0] || undefined;
+
+if (color == 'skeleton') {
+	skeleton = true
+}else{
+	skeleton = false
+}
+
 directory = argv[1] || 'pagen_website';
 
 if(inArray(color, allowed_options)){
 	color = undefined;
 	directory = undefined;
 }
+
 if (typeof color !== 'undefined' && color.indexOf('_')) color = color.split('_');
-if (inArray(directory, allowed_colors) || inArray(directory, allowed_options) || typeof directory == 'undefined') directory = 'pagen_website';
+if (inArray(directory, allowed_options) || typeof directory == 'undefined') directory = 'pagen_website';
 
 main = function(color, directory){
 //options setup//
@@ -245,7 +258,15 @@ main = function(color, directory){
 		data = undefined
 	}
 
-	type = {'boot':boot, 'blog':blog, 'nodejitsu':nodejitsu, 'heroku':heroku, 'library':library, 'library_data':data}
+	type = {
+		'boot': boot, 
+		'blog': blog, 
+		'nodejitsu': nodejitsu, 
+		'heroku': heroku, 
+		'library': library, 
+		'library_data': data, 
+		'skeleton': skeleton
+	}
 	
 	if(typeof color == 'undefined'){ //running with no arguments defaults to the generator below
 	  site_generate(directory, type)

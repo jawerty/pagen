@@ -5,6 +5,7 @@ touch Procfile && touch .gitignore && touch .npmignore
 cat > .npmignore << EOF
 node_modules
 test
+npm-debug.log
 EOF
 ###
 zsh <<< '> Procfile <<< "web: node app.js"'

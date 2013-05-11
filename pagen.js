@@ -3,7 +3,7 @@ var fs = require('fs');
 var sys = require('sys');
 var request = require('request');
 var chdir = require('chdir');
-var wrench = require('wrench')
+var wrench = require('wrench');
 var replace = require('replace');
 var util = require('util');
 /*color set**/
@@ -18,7 +18,7 @@ var help = '\npagen.js is a simple and customizable site generator for node.js. 
 \n\nUsage: \n\tpagen <color> <directory> [options]\nOptions:\n\t-h, --help\tHelp screen\n\t-v, --version\tCurrent version\n\t-b, \
 --blog\tGenerate a blog-based, mongodb website\n\t-k, --heroku\tGenerate a website with heroku setup\n\t-n, --nodejitsu\tGenerates a website with nodejitsu setup\n  \
 \t-t, --bootstrap\tGenerates a website with twitter bootstrap capabilities\n\t-l, --library <library>\tAdd js|css libraries to your application';
-var version = 'v0.1.7';
+var version = 'v0.1.8';
 
 allowed_options = [ '-n', '--nodejitsu', '-k', '--heroku', '-b', '--blog', '-t', '--bootstrap', '-l', '--library'];
 allowed_colors = ['red', 'green', 'blue', 'lightblue', 'yellow', 'pink', 'magenta', 'brown', 'gray'];

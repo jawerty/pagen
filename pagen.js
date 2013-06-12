@@ -223,7 +223,6 @@ if (inArray(directory, allowed_options) || typeof directory == 'undefined') dire
 
 main = function(color, directory){
 //options setup//
-	
 	var boot, blog, nodejitsu, heroku, library;
 
 	if(inArray('-h', argv) || inArray('--help', argv)){

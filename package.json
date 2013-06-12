@@ -32,7 +32,7 @@
   ],
   "main": "./pagen",
   "directories": {
-    "lib":"lib",
+    "lib": "lib",
     "test": "test"
   },
   "license": "MIT",
@@ -40,6 +40,7 @@
     "wrench": "1.4.4",
     "replace": "0.2.4",
     "request": "2.16.6",
-    "chdir": "*"
+    "chdir": "*",
+    "backlog": "0.0.3"
   }
 }

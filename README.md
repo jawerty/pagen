@@ -53,18 +53,18 @@ $ cd pagen_website
 $ node app	   #runs server
 ```
 
-
+### Basic w/ color
 Generate a website with a built in color scheme (as seen above)
 ```
 $ pagen blue
 ```
 
-Choosing your directory
+### Generate in a custom directory
 ```
 $ pagen green my_website
 ```
 
-Choose your own color scheme
+### Choose your own color scheme
 *note: The 1st color is the primary color while the 2nd is the secondary color.
 * simple colors
 ```
@@ -76,7 +76,7 @@ $ pagen 'blue_black' my_site
 $ pagen '#545454_#ff892' my_website     
 ```
 
-Importing javascript and/or css libraries (from [cdnjs]<http://cdnjs.com>)
+### Importing javascript and/or css libraries (from [cdnjs]<http://cdnjs.com>)
 
 *note: Multiple library imports must be separated by '_' underscores.
 ```

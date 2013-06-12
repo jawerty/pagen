@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+var backlog = require('backlog');
 var fs = require('fs');
 var sys = require('sys');
 var request = require('request');

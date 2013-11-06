@@ -3,7 +3,8 @@ pagen.js is a simple and customizable site generator for node.js. You can genera
 
 homepage: http://jawerty.github.io/pagen/
 
-Current version: 0.2.1
+Current version: 0.2.3
+
 
 # Features
 * Easy to use
@@ -16,6 +17,8 @@ Current version: 0.2.1
 * Blogs are run on MongoDB and based off of the [Node2Blog](https://github.com/jawerty/Node2Blog) project
 * Generate websites with js/css libraries already built in (i.e. socket.io/angular.js/etc)
 * Much more...
+
+![Image cannot be loaded](http://i.imgur.com/g0Dod61.png)
 
 # Installation
 Install globally
@@ -163,9 +166,6 @@ $ pagen green jitsu_site --nodejitsu
 $ cd jitsu_site
 $ jitsu create
 ```
-
-# What the static (blue) website looks like
-![Image cannot be loaded](http://i.imgur.com/hmOeCG3.png)
 
 # Contact
 If you would like to contact me for further information on the project, see the info below.

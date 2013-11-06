@@ -19,7 +19,7 @@ var help = '\npagen.js is a simple and customizable swebite generator for node.j
 \n\nUsage: \n\tpagen <color> <directory> [options]\nOptions:\n\t-h, --help\tHelp screen\n\t-v, --version\tCurrent version\n\t-b, \
 --blog\tGenerate a blog-based, mongodb website\n\t-k, --heroku\tGenerate a website with heroku setup\n\t-n, --nodejitsu\tGenerates a website with nodejitsu setup\n  \
 \t-t, --bootstrap\tGenerates a website with twitter bootstrap capabilities\n\t-l, --library <library>\tAdd js|css libraries to your application';
-var version = 'v0.2.0';
+var version = 'v0.2.3';
 
 allowed_options = [ '-n', '--nodejitsu', '-k', '--heroku', '-b', '--blog', '-t', '--bootstrap', '-l', '--library'];
 allowed_colors = ['red', 'green', 'blue', 'lightblue', 'yellow', 'pink', 'magenta', 'brown', 'gray'];
@@ -82,14 +82,16 @@ site_generate = function(directory, type, color, skeleton){
 
 	copy = function(small_type, type){
 
-		if (process.platform == 'darwin') cmd = 'sh '
-
-		else cmd = ''
+		if (process.platform == 'darwin') cmd = 'sh ';
+		else cmd = '';
 
 		if (fs.existsSync('/usr/local/lib/node_modules')) {
 			dir = '/usr/local/lib/node_modules'
+		}else if(process.platform == 'win32') {
+			dir = process.env.HOME + "/AppData/Roaming/npm/node_modules"
 		}else{
-			dir = '/usr/lib/node_modules'
+			if (fs.existsSync('/home/node_modules')) dir = '/home/node_modules';
+			else dir = '/usr/lib/node_modules';
 		}
 
 		start = function(shell, message){

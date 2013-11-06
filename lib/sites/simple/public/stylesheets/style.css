@@ -53,8 +53,7 @@ color: #00B7FF;
 }
 #content #main{
 	float:left;
-	border: 1px solid #ccc;
-	padding:5%;
+	padding:0 5% 5% 5%;
 	height:100%;
 	background: #ffffff; /* Old browsers */
 	background: -moz-linear-gradient(top, #ffffff 1%, #f7f7f7 100%); /* FF3.6+ */

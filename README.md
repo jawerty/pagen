@@ -3,7 +3,7 @@ pagen.js is a simple and customizable site generator for node.js. You can genera
 
 homepage: http://jawerty.github.io/pagen/
 
-Current version: 0.2.0
+Current version: 0.2.1
 
 # Features
 * Easy to use
@@ -176,7 +176,7 @@ Github: jawerty
 
 Twitter: @jawerty
 
-Blog: <http://wrightdev.herokuapp.com>
+Blog: <http://jawerty.github.io>
 
 # License
 See the file LICENSE to view the MIT License

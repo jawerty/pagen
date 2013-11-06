@@ -1,21 +1,21 @@
 #!/usr/bin/env node
-var backlog = require('backlog');
 var fs = require('fs');
-var sys = require('sys');
 var request = require('request');
 var chdir = require('chdir');
 var wrench = require('wrench');
 var replace = require('replace');
 var util = require('util');
+
 /*color set**/
 green_start = '\u001b[32m';
 yel_start = '\u001b[33m';
 end = '\u001b[0m';
 /************/
+
 var exec = require('child_process').exec,
     child;
 
-var help = '\npagen.js is a simple and customizable site generator for node.js. \
+var help = '\npagen.js is a simple and customizable swebite generator for node.js. \
 \n\nUsage: \n\tpagen <color> <directory> [options]\nOptions:\n\t-h, --help\tHelp screen\n\t-v, --version\tCurrent version\n\t-b, \
 --blog\tGenerate a blog-based, mongodb website\n\t-k, --heroku\tGenerate a website with heroku setup\n\t-n, --nodejitsu\tGenerates a website with nodejitsu setup\n  \
 \t-t, --bootstrap\tGenerates a website with twitter bootstrap capabilities\n\t-l, --library <library>\tAdd js|css libraries to your application';

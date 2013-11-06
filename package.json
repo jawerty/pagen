@@ -1,7 +1,7 @@
 {
   "name": "pagen",
   "homepage": "http://jawerty.github.io/pagen/",
-  "author": "Jared Wright (http://wrightdev.herokuapp.com/jawerty)",
+  "author": "Jared Wright (http://jawerty.github.io)",
   "bin": {
     "pagen": "./pagen.js"
   },
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "http://github.com/jawerty/pagen.git"
   },
-  "description": "A simple and customizable node.js site generator",
+  "description": "A simple and customizable node.js website generator",
   "keywords": [
     "pagen",
     "pagen.js",
@@ -22,7 +22,7 @@
     "page",
     "node.js"
   ],
-  "version": "0.2.0",
+  "version": "0.2.1",
   "preferGlobal": "true",
   "licenses": [
     {
@@ -40,7 +40,6 @@
     "wrench": "1.4.4",
     "replace": "0.2.4",
     "request": "2.16.6",
-    "chdir": "*",
-    "backlog": "0.0.3"
+    "chdir": "*"
   }
 }
